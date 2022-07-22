@@ -1,0 +1,15 @@
+<launch>
+    <include file="$(find quad_description)/launch/three_quad_redwan.launch" />
+    <node pkg="area_coverage" type="area_coverage.py" name="area_coverage_planner" output="screen">
+        <param name="altitude" value="1.0" />
+        <param name="interpolation" value="0.150" />
+        <param name="safe_dist" value="0.55" />
+    </node>
+    <node pkg="map_server" type="map_server" args="$(find area_coverage)/config/mymap.yaml" name="mapserver" />
+    <node pkg="area_coverage" type="area_coverage_view" name="area_coverage_view">
+        <param name="altitude" value="1.0" />
+    </node>
+    <node pkg="tf" type="static_transform_publisher" name="robot_location" args="1 0 1 0 0 0 1 map world 100" />
+
+    <node pkg="area_coverage" type="path_reader.py" name="pathReader" args="$(find area_coverage)/config/area_decomposition_02.json" output="screen"/>
+</launch>
