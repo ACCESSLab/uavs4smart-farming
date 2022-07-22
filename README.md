@@ -13,19 +13,4 @@ Then, the assigned areas are covered generating the back and fourth sweeping pat
 * Gurobi
 * CoppeliaSim
 
-## Build and Simulation
-The main entry point is in python. We use a modified version of vrepper to communicate with the CoppeliaSim simulator. First, we need to build the __TaskPlanner__ using the following commands
-```
-cd TaskPlanner
-mkdir build && cd build 
-cmake ..
-make -j4
-```
-Once TaskPlanner is built, copy the __BenchmarkAreaCoverage__ executable and paste it to **MotionPlanner/cpp_lib** folder. 
-
-To run the simulation, use the following commands
-```
-cd MotionPlanner 
-python3 workspace.py
-```
 
